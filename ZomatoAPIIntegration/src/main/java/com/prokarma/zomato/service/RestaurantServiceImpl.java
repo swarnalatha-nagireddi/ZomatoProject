@@ -13,6 +13,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	@Override
 	public Integer saveRestaurantData(Restaurant restaurant) {
+		Restaurant restaurantExisted = getRestaurantDataById(restaurant.getId());
+		if(restaurantExisted!=null)
+			return restaurant.getId();
 		return restaurantDAO.saveRestaurantData(restaurant);
 	}
 

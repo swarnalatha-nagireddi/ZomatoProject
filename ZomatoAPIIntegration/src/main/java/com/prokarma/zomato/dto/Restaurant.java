@@ -26,12 +26,7 @@ public class Restaurant {
         this.name = name;
         this.url = url;
     }
-    public Restaurant(String name, String url) {
-        super();
-        this.name = name;
-        this.url = url;
-    }
-	
+   
 	public Integer getId() {
 		return id;
 	}
