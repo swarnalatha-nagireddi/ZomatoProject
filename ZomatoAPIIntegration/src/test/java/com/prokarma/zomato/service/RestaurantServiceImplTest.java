@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 
-import org.h2.engine.Database;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,30 +32,27 @@ public class RestaurantServiceImplTest {
 
 	@Test
 	public void testSaveRestaurant() {
-		System.out.println("testing saveRestaurantData");
+		System.out.println("Testing saveRestaurantData");
 
 		// Mocking restaurant methods
 		when(restaurant.getName()).thenReturn("Sample Restaurant");
 		when(restaurant.getUrl()).thenReturn("www.samplerestaurant.com");
 		when(restaurant.getId()).thenReturn(new Integer(4388));
 
-		// Create sample restaurant
 		Restaurant restaurant = new Restaurant();
 		restaurant.setId(43088);
 		restaurant.setName("Birynis");
 		restaurant.setUrl("www.hydbiryanis.com");
 
-		// Call save restaurant method
 		Integer restaurantId = restaurantServiceImpl.saveRestaurantData(restaurant);
 
-		// Assert expected results
 		Assert.assertNotNull(restaurantId);
 		Assert.assertEquals(restaurant.getId(), restaurantId);
 	}
 
 	@Test
 	public void testGetRestaurantDataById() {
-		System.out.println("testing getRestaurantDataById");
+		System.out.println("Testing getRestaurantDataById");
 		Restaurant restaurant = restaurantServiceImpl.getRestaurantDataById(10002);
 		Assert.assertNotNull(restaurant);
 		Assert.assertEquals("Udipi", restaurant.getName());

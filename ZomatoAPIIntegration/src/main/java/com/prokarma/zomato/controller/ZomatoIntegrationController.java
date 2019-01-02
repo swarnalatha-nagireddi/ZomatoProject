@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prokarma.zomato.custom.RestaurantNotFoundException;
@@ -40,6 +39,7 @@ public class ZomatoIntegrationController {
 				+ environment.getProperty("zomato.api.key");
 		StringBuffer content = new StringBuffer();
 		try {
+			System.out.println("base url is: "+base_url);
 			URL urlForGetRequest = new URL(base_url);
 			String readLine = null;
 			HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -118,6 +118,7 @@ public class ZomatoIntegrationController {
 			String decodedRestaurantJsonData = null;
 			try {
 				decodedRestaurantJsonData = java.net.URLDecoder.decode(restaurantJsonData, "UTF-8");
+				System.out.println("decoded string is : " + decodedRestaurantJsonData);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
@@ -130,6 +131,7 @@ public class ZomatoIntegrationController {
 				restaurantId = restaurantService.saveRestaurantData(restaurant);
 			}
 		}
+		System.out.println("restaurant id is : "+restaurantId);
 		if (restaurantId != 0)
 			return "" + restaurantId + " Saved Successfully";
 		else
