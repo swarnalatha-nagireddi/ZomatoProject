@@ -45,8 +45,6 @@ public class ZomatoIntegrationControllerTest {
 
 	Restaurant mockRestaurant = new Restaurant(3029, "Restaurant Test", "www.restauranttest.com");
 
-	String exampleRestaurantJson = "{\"id\":\"98498\",\"name\":\"Simple Restaurant\",\"url\":\"www.simplerestaurant.com\"}";
-
 	Restaurant restaurant;
 
 	@Before
@@ -93,6 +91,7 @@ public class ZomatoIntegrationControllerTest {
 
 	@Test
 	public void testConsumeRestaurantDetails() throws Exception {
+		Mockito.when(restaurantService.saveRestaurantData(restaurant)).thenReturn(43088);
 		String jsonDataToSave = "{\"R\":{\"res_id\":16774388},\"apikey\":\"718f7d88e935e0df4103da96ba7eb81c\",\"id\":\"16774388\",\"name\":\"Otto Enoteca Pizzeria\",\"url\":\"https:\\/\\/www.zomato.com\\/new-york-city\\/otto-enoteca-pizzeria-greenwich-village?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1\",\"location\":{\"address\":\"One Fifth Avenue at 8th Street, Greenwich Village 10003\",\"locality\":\"Greenwich Village\",\"city\":\"New York City\",\"city_id\":280,\"latitude\":\"40.7318200000\",\"longitude\":\"-73.9965400000\",\"zipcode\":\"10003\",\"country_id\":216,\"locality_verbose\":\"Greenwich Village\"},\"switch_to_order_menu\":0,\"cuisines\":\"Pizza, Italian\",\"average_cost_for_two\":60,\"price_range\":4,\"currency\":\"$\",\"offers\":[],\"opentable_support\":0,\"is_zomato_book_res\":0,\"mezzo_provider\":\"OTHER\",\"is_book_form_web_view\":0,\"book_form_web_view_url\":\"\",\"book_again_url\":\"\",\"thumb\":\"https:\\/\\/b.zmtcdn.com\\/data\\/res_imagery\\/16774318_RESTAURANT_fc526e8cfdc1cd8242c50298385d325c.JPG?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A\",\"user_rating\":{\"aggregate_rating\":\"4.4\",\"rating_text\":\"Very Good\",\"rating_color\":\"5BA829\",\"votes\":\"579\"},\"photos_url\":\"https:\\/\\/www.zomato.com\\/new-york-city\\/otto-enoteca-pizzeria-greenwich-village\\/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop\",\"menu_url\":\"https:\\/\\/www.zomato.com\\/new-york-city\\/otto-enoteca-pizzeria-greenwich-village\\/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop\",\"featured_image\":\"https:\\/\\/b.zmtcdn.com\\/data\\/res_imagery\\/16774318_RESTAURANT_fc526e8cfdc1cd8242c50298385d325c.JPG\",\"has_online_delivery\":0,\"is_delivering_now\":0,\"include_bogo_offers\":true,\"deeplink\":\"zomato:\\/\\/restaurant\\/16774318\",\"is_table_reservation_supported\":0,\"has_table_booking\":0,\"events_url\":\"https:\\/\\/www.zomato.com\\/new-york-city\\/otto-enoteca-pizzeria-greenwich-village\\/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1\"}";
 		String encodedString = URLEncoder.encode(jsonDataToSave, "UTF-8");
 		mockMvc.perform(
